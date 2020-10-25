@@ -1,4 +1,4 @@
-from urllib import request, parse, error
+from urllib import request, parse
 import json
 import ssl
 import os
@@ -30,7 +30,7 @@ def getData(address):
     if API_KEY is not False:
         parms['key'] = API_KEY
 
-    url = SERVICEURL + parse.urlencode(parms)
+    url = SERVICE_URL + parse.urlencode(parms)
 
     print('Retrieving', url)
     raw_data = request.urlopen(url, context=ctx)

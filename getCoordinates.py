@@ -1,4 +1,4 @@
-import urllib.request, urllib.parse, urllib.error
+from urllib import request, parse, error
 import json
 import ssl
 import os
@@ -10,9 +10,9 @@ API_KEY = os.environ.get("API_KEY",False)
 
 if API_KEY is False:
     API_KEY = 42
-    serviceurl = 'http://py4e-data.dr-chuck.net/json?'
+    SERVICE_URL = 'http://py4e-data.dr-chuck.net/json?'
 else :
-    serviceurl = 'https://maps.googleapis.com/maps/api/geocode/json?'
+    SERVICE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
 
 # Ignore SSL certificate errors
 ctx = ssl.create_default_context()
@@ -21,19 +21,19 @@ ctx.verify_mode = ssl.CERT_NONE
 
 
 def getData(address):
-    if len(address) < 1: 
+    if len(address) < 1:
         return
 
     parms = {}
     parms.update({'address' : address})
-    
-    if API_KEY is not False: 
+
+    if API_KEY is not False:
         parms['key'] = API_KEY
 
-    url = serviceurl + urllib.parse.urlencode(parms)
+    url = SERVICEURL + parse.urlencode(parms)
 
     print('Retrieving', url)
-    raw_data = urllib.request.urlopen(url, context=ctx)
+    raw_data = request.urlopen(url, context=ctx)
     decodeddata = raw_data.read().decode()
 
     return decodeddata
@@ -52,11 +52,11 @@ def getCordinates(data):
     longitude = js_data['results'][0]['geometry']['location']['lng']
 
     location = js_data['results'][0]['formatted_address']
-    
+
     return latitude,longitude,location
 
-    
-if __name__ == "__main__" : 
+
+if __name__ == "__main__" :
     while True:
         address = input('Enter location: ')
         decodeddata = getData(address=address)
@@ -67,5 +67,3 @@ if __name__ == "__main__" :
 
         print(f"latitude:{latitude}, longitude= {longitude}")
         print(f"Loc: {location}")
-
-    

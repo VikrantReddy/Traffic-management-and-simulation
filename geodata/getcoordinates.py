@@ -63,7 +63,7 @@ if __name__ == "__main__" :
 
         print('Retrieved', len(decodeddata), 'characters')
 
-        latitude,longitude,location = getCordinates(data=decodeddata)
+        latitude,longitude,location = getLocation(data=decodeddata)
 
         print(f"latitude:{latitude}, longitude= {longitude}")
         print(f"Loc: {location}")

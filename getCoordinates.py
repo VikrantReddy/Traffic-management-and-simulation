@@ -61,9 +61,9 @@ if __name__ == "__main__" :
         address = input('Enter location: ')
         decodeddata = getData(address=address)
 
-        print('Retrieved', len(data), 'characters')
+        print('Retrieved', len(decodeddata), 'characters')
 
-        latitude,longitude,location = getCordinates(data=data)
+        latitude,longitude,location = getCordinates(data=decodeddata)
 
         print(f"latitude:{latitude}, longitude= {longitude}")
         print(f"Loc: {location}")

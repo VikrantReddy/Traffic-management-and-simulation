@@ -39,7 +39,7 @@ def getData(address):
     return decodeddata
 
 
-def getCordinates(data):
+def getLocation(data):
     try:
         js_data = json.loads(data)
     except TypeError:

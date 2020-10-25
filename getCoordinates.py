@@ -41,17 +41,17 @@ def getData(address):
 
 def getCordinates(data):
     try:
-        js = json.loads(data)
+        js_data = json.loads(data)
     except TypeError:
-        js = None
+        js_data = None
 
-    if not js or 'status' not in js or js['status'] != 'OK':
+    if not js_data or 'status' not in js_data or js_data['status'] != 'OK':
         return -1
 
-    latitude = js['results'][0]['geometry']['location']['lat']
-    longitude = js['results'][0]['geometry']['location']['lng']
+    latitude = js_data['results'][0]['geometry']['location']['lat']
+    longitude = js_data['results'][0]['geometry']['location']['lng']
 
-    location = js['results'][0]['formatted_address']
+    location = js_data['results'][0]['formatted_address']
     
     return latitude,longitude,location
 
@@ -59,7 +59,7 @@ def getCordinates(data):
 if __name__ == "__main__" : 
     while True:
         address = input('Enter location: ')
-        data = getData(address=address)
+        decodeddata = getData(address=address)
 
         print('Retrieved', len(data), 'characters')
 

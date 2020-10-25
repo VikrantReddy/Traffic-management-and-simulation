@@ -33,8 +33,8 @@ def getData(address):
     url = serviceurl + urllib.parse.urlencode(parms)
 
     print('Retrieving', url)
-    data = urllib.request.urlopen(url, context=ctx)
-    decodeddata = data.read().decode()
+    raw_data = urllib.request.urlopen(url, context=ctx)
+    decodeddata = raw_data.read().decode()
 
     return decodeddata
 

@@ -20,7 +20,7 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 
-def getData(address):
+def getData():
     if len(address) < 1:
         return
 
@@ -59,11 +59,11 @@ def getLocation(data):
 if __name__ == "__main__" :
     while True:
         address = input('Enter location: ')
-        decodeddata = getData(address=address)
+        decodeddata = getData()
 
         print('Retrieved', len(decodeddata), 'characters')
 
-        latitude,longitude,location = getCordinates(data=decodeddata)
+        latitude,longitude,location = getLocation(data=decodeddata)
 
         print(f"latitude:{latitude}, longitude= {longitude}")
         print(f"Loc: {location}")

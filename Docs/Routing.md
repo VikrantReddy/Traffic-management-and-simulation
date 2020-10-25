@@ -13,7 +13,7 @@
     - Speed of the vehicle on the road
 
 > Wait time can be decreased by spreading the traffic among all the routes and
-#
+<br/>
 > Speed of a vehicle is affected when roads aren't clear
 
 #### Changing to a longer road is beneficial only when the increase in travel time caused by the increase in distance can be compensated by the decrease in the forthcomming wait time. 

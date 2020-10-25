@@ -12,9 +12,8 @@
     - Distance to the destination 
     - Speed of the vehicle on the road
 
-> Wait time can be decreased by spreading the traffic among all the routes and
-<br/>
-> Speed of a vehicle is affected when roads aren't clear
+> Wait time can be decreased by spreading the traffic among all the routes and</br>
+> Speed of a vehicle is affected when roads aren't clear.
 
 #### Changing to a longer road is beneficial only when the increase in travel time caused by the increase in distance can be compensated by the decrease in the forthcomming wait time. 
 
@@ -28,8 +27,8 @@ Change in Wait time + Change in travel time > 0
 
 
 #### Scope for improvment
-- Take vehicles that aren't a part of the A-B journey into account
-    - Vehicles from outside that have their destination as B
-    - Vehicles on the same road that don't have to reach 
+- Take vehicles that aren't a part of the A-B journey into account.
+    - Vehicles from outside that have their destination as B.
+    - Vehicles on the same road that don't have to reach,
 - Once the traffic lights are in control, wait time can be predicted and manipulated better.
 - A feedback loop to adjust k (constant) to route more precisely. 

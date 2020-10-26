@@ -32,3 +32,10 @@ Change in Wait time + Change in travel time > 0
     - Vehicles on the same road that don't have to reach,
 - Once the traffic lights are in control, wait time can be predicted and manipulated better.
 - A feedback loop to adjust k (constant) to route more precisely. 
+
+#### Planed Implemetation for now : 
+ - Convert the given map into a graph (Or construct a dummy graph).
+ - Use simple algorithms to find the shorted route based on the weights as 
+   1. The traffic density
+   2. Traffic speed for that instant of time in a specific length of route.
+   3. Length of the route.

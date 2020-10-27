@@ -33,3 +33,7 @@ The time given to a road shall be t + x[i] where t < T/4
 - Piped data from routing to predict upcomming traffic.
 - A cost function that learns from it's mistakes and adjusts x[i].
 
+#### Current implmentation plan
+ - Will be using dummy data to simulate.
+ - Will be used proposed equation for normalizing Traffic by manipulating traffic lights.
+

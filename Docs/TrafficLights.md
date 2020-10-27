@@ -20,7 +20,7 @@ Equations
 ---
 ~~~
 Variance of the traffic across the mean -> minimum 
-The time give to a road shall be t + x[i] where t < T/4
+The time given to a road shall be t + x[i] where t < T/4
 //t is the minimum time given for a road, x is the array of varaible durationations and T is the total time for a round.
 ~~~
 

@@ -11,7 +11,7 @@
   - Round robin time
     - The time spent on waiting for the road's turn to recur.
 
-> The light may shhift when there are no vehicles are on a side</br>
+> The light may shhift when there are no vehicles are on a side and</br>
 > The time given to a side must be decided dynamically.
 
 #### Manipulation of the signals can only be done as long as it's ensured that all the roads get their turn and the average weighting period decreases. 
@@ -27,8 +27,9 @@ The time give to a road shall be t + x[i] where t < T/4
 
 #### Scope for improvment
 - The total time for a round doesn't have to be dynamic
-  - When the data is analysed for longer durations(months) the total time for a round can also be manipulated
-- Emergency situations can be taken into account by detecting unusual amounts for traffic 
+  - When the data is analysed for longer durations(months) the total time for a round can also be manipulated.
+  - The lights on one side of a road can go to sleep when there is inactivity.
+- Emergency situations can be taken into account by detecting unusual amounts for traffic. 
 - Piped data from routing to predict upcomming traffic.
-- A cost function that learns from it's mistakes and adjusts x[i]
+- A cost function that learns from it's mistakes and adjusts x[i].
 

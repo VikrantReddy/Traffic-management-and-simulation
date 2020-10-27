@@ -25,6 +25,12 @@ Change in distance x [Change in average speed +/- k] > 0
 Change in Wait time + Change in travel time > 0
 ~~~
 
+#### Planed Implemetation for now 
+ - Convert the given map into a graph (Or construct a dummy graph) or take data from an API.
+ - Use simple algorithms to find the shorted route based on the weights as 
+   - The traffic density
+   - Traffic speed for that instant of time in a specific length of route.
+   - Length of the route.
 
 #### Scope for improvment
 - Take vehicles that aren't a part of the A-B journey into account.
@@ -32,10 +38,3 @@ Change in Wait time + Change in travel time > 0
     - Vehicles on the same road that don't have to reach,
 - Once the traffic lights are in control, wait time can be predicted and manipulated better.
 - A feedback loop to adjust k (constant) to route more precisely. 
-
-#### Planed Implemetation for now 
- - Convert the given map into a graph (Or construct a dummy graph) or take data from an API.
- - Use simple algorithms to find the shorted route based on the weights as 
-   - The traffic density
-   - Traffic speed for that instant of time in a specific length of route.
-   - Length of the route.

@@ -11,7 +11,7 @@
   - Round robin time
     - The time spent on waiting for the road's turn to recur.
 
-> The light may shhift when there are no vehicles are on a side and</br>
+> The light may shift when there are no vehicles are on a side and</br>
 > The time given to a side must be decided dynamically.
 
 #### Manipulation of the signals can only be done as long as it's ensured that all the roads get their turn and the average weighting period decreases. 
@@ -19,7 +19,7 @@
 Equations
 ---
 ~~~
-Varience of the traffic across the mean -> minimum 
+Variance of the traffic across the mean -> minimum 
 The time give to a road shall be t + x[i] where t < T/4
 //t is the minimum time given for a road, x is the array of varaible durationations and T is the total time for a round.
 ~~~

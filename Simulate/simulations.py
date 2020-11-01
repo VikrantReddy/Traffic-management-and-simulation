@@ -83,7 +83,7 @@ def randroad():
 def mean():
     total_cars = 0
     for no_of_cars in cars_on_road.values():
-        sum += no_of_cars
+        total_cars += no_of_cars
     
     return total_cars/len(cars_on_road.values())
 

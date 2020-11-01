@@ -4,12 +4,11 @@ import time
 import asyncio
 
 class Car:
-    def __init__(self,road,carid,start,end,visited = set()):
+    def __init__(self,road,carid,start,end):
         self.road = road
         self.carid = carid
         self.start = start
         self.end = end
-        self.visited = visited
 
     def wrapper(self):
         asyncio.run(self.travel())
@@ -27,7 +26,7 @@ class Car:
 
                 await passvalue    
             
-            elif nextroad in self.visited or cars_on_road[nextroad]>=5:
+            elif nextroad in visited or cars_on_road[nextroad]>=5:
                 continue
             
 
@@ -61,11 +60,10 @@ class TrafficLight:
     def traffic_logic(self):
         print("The game has begun")
         while True:
-            for road in self.roads.keys():
-                if road == None: 
+            for road in self.roads:
+                if road is None: 
                     continue
 
-                print(road,self.roads[road])
                 self.change_status(road)
                 time.sleep(30)
                 self.change_status(road)   
@@ -83,11 +81,11 @@ def randroad():
 
 
 def mean():
-    sum = 0
-    for cars in cars_on_road.values():
-        sum += cars
+    total_cars = 0
+    for no_of_cars in cars_on_road.values():
+        sum += no_of_cars
     
-    return sum/len(cars_on_road.values())
+    return total_cars/len(cars_on_road.values())
 
 
 

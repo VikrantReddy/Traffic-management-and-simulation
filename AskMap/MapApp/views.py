@@ -14,10 +14,15 @@ import json
 
 @api_view(["POST"])
 def GetMaps(map_number):
+    j_file = open("maps.json")
+    map_content = json.load(j_file)
     try:
-        height = json.loads(map_number.body)
-        weight = str(height * 10)
+        print(map_number)
+        number = str(json.loads(map_number.body))
+        resp = map_content[number]
 
-        return JsonResponse("Ideal weight should be :" + weight + " kg ", safe=False)
+        return JsonResponse(resp, safe=False)
     except ValueError as error:
         return Response(error.args[0], status.HTTP_400_BAD_REQUEST)
+
+    j_file.close()

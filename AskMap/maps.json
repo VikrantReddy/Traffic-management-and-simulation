@@ -1,0 +1,57 @@
+{
+    "1": {
+        "no_of_roads": 6,
+        "road_string": "a b c d e f",
+        "no_of_lights": 2,
+        "light_string": "light-0 light-1",
+        "road_with_lights": {
+            "light-0": "b e a",
+            "light-1": "d f"
+        },
+        "name": "graph - 1",
+        "graph-object": {
+            "a": "light-0 e f",
+            "b": "light-1 c",
+            "c": "d f b",
+            "d": "e c light-1",
+            "e": "d light-0 a",
+            "f": "a c light-1",
+            "light-0": "a e b",
+            "light-1": "d f"
+        },
+        "cars_on_road": {
+            "a": {
+                "traffic": 0,
+                "length": 8
+            },
+            "b": {
+                "traffic": 0,
+                "length": 6
+            },
+            "c": {
+                "traffic": 0,
+                "length": 10
+            },
+            "d": {
+                "traffic": 0,
+                "length": 5
+            },
+            "e": {
+                "traffic": 0,
+                "length": 10
+            },
+            "f": {
+                "traffic": 0,
+                "length": 7
+            },
+            "light-0": {
+                "traffic": 0,
+                "length": 6
+            },
+            "light-1": {
+                "traffic": 0,
+                "length": 8
+            }
+        }
+    }
+}

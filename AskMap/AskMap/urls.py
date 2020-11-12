@@ -18,6 +18,6 @@ from django.urls import path
 from MapApp import views
 
 urlpatterns = [
-    path(r'^admin/', admin.site.urls),
-    path(r'^getmaps/', views.GetMaps)
+    path('admin/', admin.site.urls),
+    path('getmaps/', views.GetMaps)
 ]

@@ -36,7 +36,7 @@ A project for analysing and normalizing traffic.
  res = requests.request("POST", url, headers=headers, data = data)
  print(res.text.encode(''utf8'))
  ```
- This will give the JSON content of the second map.
+ This will give the JSON content of the first map.
  For other maps change the "data" number.
  
  ## Other Maps will be done soon . To view JSON of present map : /AskMap/maps.json

@@ -34,7 +34,7 @@ A project for analysing and normalizing traffic.
         'Content-Type': 'text/plain'
        }
  res = requests.request("POST", url, headers=headers, data = data)
- print(res.text.encode(''utf8'))
+ print(res.text.encode("utf8"))
  ```
  This will give the JSON content of the first map.
  For other maps change the "data" number.

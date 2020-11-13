@@ -14,6 +14,9 @@ class Car:
 
     def wrapper(self):
         asyncio.run(self.travel())
+    
+    def smart_wrapper(self):
+        asyncio.run(self.smart_travel())
 
     async def travel(self):
         visited = set()
@@ -52,49 +55,47 @@ class Car:
         
         print(f"Path taken by {self.carid} is {' => '.join(self.path)}")
   
-    # async def travel(self):
-    #     visited = set()
-    #     visited.add(self.start)
-    #     self.path.append(str(self.start))
-    #     self.road = self.start
+    async def smart_travel(self):
+        visited = set()
+        visited.add(self.start)
+        self.path.append(str(self.start))
+        self.road = self.start
 
-    #     while self.road != self.end:  
-    #         self.time_taken += timetopass(self.road)         
-    #         cango = [x for x in graph[self.road] if x not in visited]
+        while self.road != self.end:  
+            if not isinstance(self.road,TrafficLight):
+                self.time_taken += timetopass(self.road)         
             
-    #         if len(cango) < 1:
-    #             lucky_road = graph[self.road][random.randint(0,10)%len(graph[self.road])]
-    #             visited.remove(lucky_road)
-    #             cango = [lucky_road]          
+            cango = [x for x in graph[self.road] if x not in visited]
+            
+            if len(cango) < 1:
+                lucky_road = graph[self.road][random.randint(0,10)%len(graph[self.road])]
+                visited.remove(lucky_road)
+                cango = [lucky_road]          
 
-    #         if self.end not in cango:
-    #             # ax = {x:cars_on_road[x]["traffic"] for x in cango}
-    #             # ay = max(ax,key=ax.get)
+            if self.end not in cango:
+                cango = [x for x in graph[self.road] if x not in visited]
+                nextroad = cango[random.randint(0,10)%(len(cango))]
 
-    #             # nextroad = ay
-    #             cango = [x for x in graph[self.road] if x not in visited]
-    #             nextroad = cango[random.randint(0,10)%(len(cango))]
+                if nextroad in visited: #or cars_on_road[nextroad]["traffic"]>=15
+                    continue
+                elif isinstance(nextroad,TrafficLight):
+                    passvalue = nextroad.can_pass(self.road) 
+                    await passvalue
 
-    #             if nextroad in visited: #or cars_on_road[nextroad]["traffic"]>=15
-    #                 continue
-    #             elif isinstance(nextroad,TrafficLight):
-    #                 passvalue = nextroad.can_pass(self.road) 
-    #                 await passvalue
-
-    #         else:
-    #             nextroad = self.end
+            else:
+                nextroad = self.end
 
 
 
-    #         cars_on_road[self.road]["traffic"]-=1
-    #         cars_on_road[nextroad]["traffic"]+=1 
+            cars_on_road[self.road]["traffic"]-=1
+            cars_on_road[nextroad]["traffic"]+=1 
 
-    #         self.road = nextroad
-    #         visited.add(self.road)
+            self.road = nextroad
+            visited.add(self.road)
 
-    #         self.path.append(str(self.road))
+            self.path.append(str(self.road))
         
-    #     print(f"Path taken by {self.carid} is {' => '.join(self.path)}")
+        print(f"Path taken by {self.carid} is {' => '.join(self.path)}")
 
 
     # def __repr__(self):
@@ -189,6 +190,23 @@ def apparent_mean(args):
         equvivalent_roads = equvivalent_roads + 0 if cars_on_road[x]["traffic"] < 1 else equvivalent_roads + 1 
 
     return total_cars/equvivalent_roads if equvivalent_roads > 0 else 0
+
+
+def get_data():
+    import requests
+
+    url  = "http://127.0.0.1:8000/getmaps/"
+    data = "1"
+    headers = {  
+           'Content-Type': 'text/plain'
+      }
+    res = requests.request("POST", url, headers=headers, data = data)
+    
+    return res.text
+
+def clean_data(data):
+    data["light_string"]
+    
 
 
 

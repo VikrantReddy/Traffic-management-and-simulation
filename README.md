@@ -42,29 +42,22 @@ A project for analysing and normalizing traffic.
  ## Other Maps will be done soon . To view JSON of present map : /AskMap/maps.json
  ## 3 Maps added. JSON for the 3rd map:
  ```JSON
-  {
-        "no_of_roads": 8,
-        "road_string": "a b c d e f g h",
-        "no_of_lights": 3,
-        "light_string": "light-0 light-1 light-2",
-        "roads_with_lights": {
-            "light-0": "a b c",
-            "light-1": "e d c h",
-            "light-2": "g f d"
-        },
+ {
         "name": "graph - 3",
         "graph-object": {
-            "a": "light-0 h",
-            "b": "light-0 g",
-            "c": "light-0 light-1",
-            "d": "light-1 light-2",
-            "e": "f light-1",
-            "f": "e light-2",
-            "h": "a light-1",
-            "light-0": "a b c",
-            "light-1": "c e d h",
-            "light-2": "g f d"
+            "a": "0 h",
+            "b": "0 g",
+            "c": "0 1",
+            "d": "1 2",
+            "e": "f 1",
+            "f": "e 2",
+            "h": "a 1"
         },
+        "lights": [
+            "a b c",
+            "c e d h",
+            "g f d"
+        ],
         "cars_on_road": {
             "a": {
                 "traffic": 0,
@@ -110,8 +103,8 @@ A project for analysing and normalizing traffic.
                 "traffic": 0,
                 "length": 8
             }
-      }
-}
+        }
+    }
 ```
  
  

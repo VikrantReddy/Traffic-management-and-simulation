@@ -53,5 +53,192 @@
                 "length": 8
             }
         }
+    },
+    "2": {
+        "no_of_roads": 16,
+        "road_string": "a b c d e f g h i j k l m n o p",
+        "no_of_lights": 3,
+        "light_string": "light-0 light-1 light-2 light-3",
+        "road_with_lights": {
+            "light-0": "a c",
+            "light-1": "b c e f",
+            "light-2": "i j k l",
+            "light-3": "o p l"
+        },
+        "name": "graph - 2",
+        "graph-object": {
+            "a": "b light-0",
+            "b": "a light-1",
+            "c": "light-0 light-1 d",
+            "d": "c e n",
+            "e": "light-1 i n d",
+            "f": "light-1 g j",
+            "g": "f j h k",
+            "h": "o k",
+            "i": "light-2 m e",
+            "j": "f g light-2",
+            "k": "light-2 g h",
+            "l": "light-2 light-3",
+            "m": "i n p",
+            "n": "e d p m",
+            "o": "h light-3",
+            "p": "light-3 m n",
+            "light-0": "a c",
+            "light-1": "b c e f",
+            "light-2": "j k l i",
+            "light-3": "o p l"
+        },
+        "cars_on_roads": {
+            "a": {
+                "traffic": 0,
+                "length": 8
+            },
+            "b": {
+                "traffic": 0,
+                "length": 6
+            },
+            "c": {
+                "traffic": 0,
+                "length": 10
+            },
+            "d": {
+                "traffic": 0,
+                "length": 5
+            },
+            "e": {
+                "traffic": 0,
+                "length": 10
+            },
+            "f": {
+                "traffic": 0,
+                "length": 7
+            },
+            "g": {
+                "traffic": 0,
+                "length": 7
+            },
+            "h": {
+                "traffic": 0,
+                "length": 7
+            },
+            "i": {
+                "traffic": 0,
+                "length": 7
+            },
+            "j": {
+                "traffic": 0,
+                "length": 7
+            },
+            "k": {
+                "traffic": 0,
+                "length": 7
+            },
+            "l": {
+                "traffic": 0,
+                "length": 7
+            },
+            "m": {
+                "traffic": 0,
+                "length": 7
+            },
+            "n": {
+                "traffic": 0,
+                "length": 7
+            },
+            "o": {
+                "traffic": 0,
+                "length": 7
+            },
+            "p": {
+                "traffic": 0,
+                "length": 7
+            },
+            "light-0": {
+                "traffic": 0,
+                "length": 6
+            },
+            "light-1": {
+                "traffic": 0,
+                "length": 8
+            },
+            "light-2": {
+                "traffic": 0,
+                "length": 8
+            },
+            "light-3": {
+                "traffic": 0,
+                "length": 8
+            }
+        }
+    },
+    "3": {
+        "no_of_roads": 8,
+        "road_string": "a b c d e f g h",
+        "no_of_lights": 3,
+        "light_string": "light-0 light-1 light-2",
+        "roads_with_lights": {
+            "light-0": "a b c",
+            "light-1": "e d c h",
+            "light-2": "g f d"
+        },
+        "name": "graph - 3",
+        "graph-object": {
+            "a": "light-0 h",
+            "b": "light-0 g",
+            "c": "light-0 light-1",
+            "d": "light-1 light-2",
+            "e": "f light-1",
+            "f": "e light-2",
+            "h": "a light-1",
+            "light-0": "a b c",
+            "light-1": "c e d h",
+            "light-2": "g f d"
+        },
+        "cars_on_road": {
+            "a": {
+                "traffic": 0,
+                "length": 8
+            },
+            "b": {
+                "traffic": 0,
+                "length": 6
+            },
+            "c": {
+                "traffic": 0,
+                "length": 10
+            },
+            "d": {
+                "traffic": 0,
+                "length": 5
+            },
+            "e": {
+                "traffic": 0,
+                "length": 10
+            },
+            "f": {
+                "traffic": 0,
+                "length": 7
+            },
+            "g": {
+                "traffic": 0,
+                "length": 7
+            },
+            "h": {
+                "traffic": 0,
+                "length": 7
+            },
+            "light-0": {
+                "traffic": 0,
+                "length": 6
+            },
+            "light-1": {
+                "traffic": 0,
+                "length": 8
+            },
+            "light-2": {
+                "traffic": 0,
+                "length": 8
+            }
+        }
     }
 }

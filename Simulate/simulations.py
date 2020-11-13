@@ -2,6 +2,7 @@ import random
 from threading import Thread
 import time
 import asyncio
+import json
 
 class Car:
     def __init__(self,road,carid,start,end):
@@ -107,12 +108,10 @@ class Car:
 
 
 class TrafficLight:
-    def __init__(self,road0=None,road1=None,road2=None,road3=None):
+    def __init__(self,args):
         self.roads = {}
-        self.roads.update({road0:{"light":False,"wait":0}})
-        self.roads.update({road1:{"light":False,"wait":0}})
-        self.roads.update({road2:{"light":False,"wait":0}})
-        self.roads.update({road3:{"light":False,"wait":0}})
+        for arg in args:
+            self.roads.update({arg:{"light":False,"wait":0}}) 
 
     def change_status(self,road):
         self.roads[road]["light"] = not self.roads[road]["light"]  
@@ -173,8 +172,6 @@ def timetopass(x):
     return cars_on_road[x]["length"] * (cars_on_road[x]["traffic"]/cars_on_road[x]["length"])**(1/2)
 
 
-
-
 def randroad():
     return {0:"a",1:"b",2:"c",3:"d",4:"e",5:"f"}[random.randint(0,5)]
 
@@ -204,48 +201,43 @@ def get_data():
     
     return res.text
 
-def clean_data(data):
-    data["light_string"]
+def get_clean_data():
+    data = json.loads(get_data())
     
+    lights = data["lights"]
+    graph = data["graph"]
+    cars_on_road = data["cars_on_road"]
 
+    return lights,graph,cars_on_road
 
 
 if __name__ == "__main__":
 
-    light = TrafficLight("b","e","a")
-    light1 = TrafficLight("d","f")
-
-    cars_on_road = {"a":{"traffic":0,"length":8},
-                    "b":{"traffic":0,"length":6},
-                    "c":{"traffic":0,"length":10},
-                    "d":{"traffic":0,"length":5},
-                    "e":{"traffic":0,"length":10},
-                    "f":{"traffic":0,"length":7},
-                    light:{"traffic":0,"length":6},
-                    light1:{"traffic":0,"length":8},
-                    }
-
     stop_lights = False #Kill signal
     smart_stop_lights = False #Kill signal
 
-    traffic_light_thread = Thread(target=light.traffic_logic)
-    traffic_light_thread.start()
-    traffic_light_thread1 = Thread(target=light1.traffic_logic)
-    traffic_light_thread1.start()
+    lights,graph,cars_on_road = get_clean_data()
 
-# Create the dictionary with graph elements
-    graph = { "a" : [light,"e","f"],
-            "b" : [light,"c"],
-            "c" : ["d","f","b"],
-            "d" : ["e","c",light1],
-            "e" : ["d",light,"a"],
-            "f" :["a","c",light1],
-            light : ["a","e","b"],
-            light1:["d","f"],
-            }
-    
-    # for road in cars_on_road:
-    #     cars_on_road[road]["length"] = random.randint(4,10)
+
+    for key,value in graph.items():
+        graph.update({key:value.strip().split()})
+
+    lightlist = []
+    lightthreads = []
+
+    for light in lights:
+        roads_connected = light.strip().split()
+        lightobj = TrafficLight(roads_connected)
+        lightlist.append(lightobj)
+        for i in roads_connected:
+            graph[i].append(lightobj)
+        
+        cars_on_road.update({lightobj:{"traffic":0,"length":5}})
+
+        lightthreads.append(Thread(target=lightobj.traffic_logic))
+
+        graph.update({lightobj:roads_connected})
+
 
     cars = [Car(" ",i,"a","b") for i in range(5)]
     cars += [Car(" ",i,"b","a") for i in range(5,8)]
@@ -254,12 +246,8 @@ if __name__ == "__main__":
     cars += [Car(" ",i,"c","d") for i in range(14,18)]
     cars += [Car(" ",i,"d","a") for i in range(18,23)]
 
-    # for car in cars:
-    #     print(car.__repr__())
-
     for car in cars:
         cars_on_road[car.start]["traffic"] += 1
-
 
 
     threads = []
@@ -268,6 +256,9 @@ if __name__ == "__main__":
         time.sleep(1)
         threads.append(x)
         x.start()
+
+    for lightthread in lightthreads:
+        lightthread.start()
     
     for thread in threads:
         while thread.is_alive():
@@ -275,7 +266,6 @@ if __name__ == "__main__":
 
     stop_lights = True #Kill signal
     smart_stop_lights = True #Kill signal
-        
 
     ave = 0
     for car in cars:
@@ -283,10 +273,6 @@ if __name__ == "__main__":
 
     print(ave/len(cars))
 
-    # print(cars_on_road)
 
-
-
-
-
-        
+     #TO-DO
+     # generate csv 

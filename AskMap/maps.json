@@ -74,7 +74,7 @@
             "j k l i",
             "o p l"
         ],
-        "cars_on_roads": {
+        "cars_on_road": {
             "a": {
                 "traffic": 0,
                 "length": 8

@@ -27,27 +27,23 @@ class Car:
         self.path.append(str(self.start))
         self.road = self.start
         self.smart = "Not routed"
-        self.time_taken = timetopass(self.road),2
+        self.time_taken = round(timetopass(self.road),2)
 
         while self.road != self.end:
             cango = [x for x in graph[self.road] if x not in visited]
-            
-            if len(cango) < 1:
-                lucky_road = graph[self.road][random.randint(0,10)%len(graph[self.road])]
-                visited.remove(lucky_road)
-                cango = [lucky_road]          
+            optiondict = {}
 
-            nextroad = cango[random.randint(0,10)%(len(cango))]
+            for option in cango:
+                optiondict.update({option:timetopass(option)})
 
-            if nextroad in visited: #or cars_on_road[nextroad]>=15
-                continue
-            elif isinstance(nextroad,TrafficLight):
+            nextroad = ""
+            if isinstance(nextroad,TrafficLight):
                 passvalue = nextroad.can_pass(self.road) 
-                self.time_taken += nextroad.roads[self.road]["wait"]
+                self.time_taken += round(nextroad.roads[self.road]["wait"],2)
                 await passvalue
             
             if not isinstance(self.road,TrafficLight):    
-                self.time_taken += timetopass(self.road),2
+                self.time_taken += round(timetopass(self.road),2)
 
             cars_on_road[self.road]["traffic"]-=1
             cars_on_road[nextroad]["traffic"]+=1
@@ -69,7 +65,7 @@ class Car:
         visited.add(self.start)
         self.path.append(str(self.start))
         self.road = self.start
-        self.time_taken += timetopass(self.road),2
+        self.time_taken += round(timetopass(self.road),2)
 
         while self.road != self.end:           
             cango = [x for x in graph[self.road] if x not in visited]
@@ -86,15 +82,14 @@ class Car:
                 if nextroad in visited:
                     continue
                 elif isinstance(nextroad,TrafficLight):
-                    passvalue = nextroad.can_pass(self.road)
-                    self.time_taken += nextroad.roads[self.road]["wait"]  
+                    passvalue = nextroad.can_pass(self.road) 
                     await passvalue
 
             else:
                 nextroad = self.end
 
             if not isinstance(self.road,TrafficLight):
-                self.time_taken += timetopass(self.road),2
+                self.time_taken += round(timetopass(self.road),2)
 
             cars_on_road[self.road]["traffic"]-=1
             cars_on_road[nextroad]["traffic"]+=1 
@@ -233,7 +228,7 @@ def reportgenerator(cars,light):
         writer = csv.DictWriter(file,fieldnames=fieldnames)
         writer.writeheader()
         for c in cars:
-            writer.writerow({"Car Id":str(c.carid),"Length of the path":len(c.path),"Time Taken":round(c.time_taken,2),"Smart":f"{c.smart} {light}"})
+            writer.writerow({"Car Id":str(c.carid),"Length of the path":len(c.path),"Time Taken":c.time_taken,"Smart":c.smart,"Light":light})
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -261,7 +256,7 @@ if __name__ == "__main__":
         
         cars_on_road.update({lightobj:{"traffic":0,"length":5}})
 
-        lightthreads.append(Thread(target=lightobj.traffic_logic))
+        lightthreads.append(Thread(target=lightobj.smart_traffic_logic))
 
         graph.update({lightobj:roads_connected})
 
@@ -290,7 +285,7 @@ if __name__ == "__main__":
             continue 
 
 
-    reportgenerator(cars,"Not Smart")
+    reportgenerator(cars,"Smart")
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -314,15 +309,13 @@ if __name__ == "__main__":
         while thread.is_alive():
             continue 
 
-    
-    reportgenerator(cars,"Not Smart")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 
     stop_lights = True #Kill signal
     smart_stop_lights = True #Kill signal
 
-    
+    reportgenerator(cars,"Smart")
 
     
 
